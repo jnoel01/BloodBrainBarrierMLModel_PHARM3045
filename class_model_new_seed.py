@@ -70,8 +70,8 @@ print(df_desc['Expt'].value_counts())
 descriptor_features = df_desc.drop(columns=["CompName", "Expt"])
 experiment_labels = df_desc["Expt"]
 
-print(descriptor_features.shape) 
-print(experiment_labels.shape) 
+print(descriptor_features.shape)
+print(experiment_labels.shape)
 print("\n*************END OF DATA EXPLORATION*************")
 
 
@@ -79,9 +79,9 @@ print("\n*************END OF DATA EXPLORATION*************")
             # STEP 2: DATA PREPROCESSING #
 #####################################################
 train_desc_ft, val_desc_ft, train_expt_labels, val_expt_labels = train_test_split(
-    descriptor_features, experiment_labels, 
-    test_size=0.2, 
-    random_state=400, 
+    descriptor_features, experiment_labels,
+    test_size=0.2,
+    random_state=400,
     stratify=experiment_labels
 )
 
@@ -327,25 +327,25 @@ comparison_df = pd.DataFrame({
         accuracy_score(val_expt_labels, lasso_val_preds),
         accuracy_score(val_expt_labels, rf_val_preds)
     ],
-    
+
     "Precision_0": [
         pca_report["0"]["precision"],
         lasso_report["0"]["precision"],
         rf_report["0"]["precision"]
     ],
-    
+
     "Recall_0": [
         pca_report["0"]["recall"],
         lasso_report["0"]["recall"],
         rf_report["0"]["recall"]
     ],
-    
+
     "Precision_1": [
         pca_report["1"]["precision"],
         lasso_report["1"]["precision"],
         rf_report["1"]["precision"]
     ],
-    
+
     "Recall_1": [
         pca_report["1"]["recall"],
         lasso_report["1"]["recall"],
@@ -359,50 +359,6 @@ print("\nMODEL COMPARISON TABLE:")
 print(comparison_df)
 
 #####################################################
-# STEP 8: Use same preprocessing and LASSO model to
+# STEP 8: Use same preprocessing and RF model to
 # train on training data + use external test set
 #####################################################
-df_full_train = pd.read_csv("./train/desc_rdk_train.csv")
-
-full_train_desc_ft = df_full_train.drop(columns=["CompName", "Expt"])
-full_train_expt_label = df_full_train["Expt"]
-
-variance_full = full_train_desc_ft.var()
-non_constant_full = variance_full[variance_full > 0].index
-full_train_desc_ft = full_train_desc_ft[non_constant_full]
-correlations_full = full_train_desc_ft.corrwith(full_train_expt_label).abs()
-corr_features_full = correlations_full[correlations_full >= 0.25].index.tolist()
-
-if len(corr_features_full) == 0:
-    raise ValueError("No features passed the correlation threshold on full training data.")
-
-full_train_desc_ft = full_train_desc_ft[corr_features_full]
-
-scaler_final = StandardScaler()
-scaled_full_train_desc_ft = scaler_final.fit_transform(full_train_desc_ft)
-
-lasso_final = LogisticRegression(
-    solver="liblinear",
-    l1_ratio=1.0,
-    max_iter=1000,
-    class_weight="balanced",
-    random_state=400
-)
-
-lasso_final.fit(scaled_full_train_desc_ft, full_train_expt_label)
-
-df_test = pd.read_csv("./external_test/desc_rdk_test.csv")
-test_output = df_test.copy()
-test_desc_ft = df_test.drop(columns=["CompName"])
-
-test_desc_ft = test_desc_ft[non_constant_full]
-test_desc_ft = test_desc_ft[corr_features_full]
-scaled_test_desc_ft = scaler_final.transform(test_desc_ft)
-
-test_preds = lasso_final.predict(scaled_test_desc_ft)
-test_output["Expt"] = test_preds
-
-# Save Final Ouput
-test_output.to_csv("desc_rdk_test_predictions.csv", index=False)
-print("\nFirst few rows of test prediction csv:")
-print(test_output.head())
