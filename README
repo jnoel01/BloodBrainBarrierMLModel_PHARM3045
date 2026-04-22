@@ -1,0 +1,63 @@
+# DOWNLOAD INSUTRCTIONS
+To make this work end to end on your machine, clone the gitHub repo.
+There are no extra downloads required beyond Python, pip, and the packages in `requirements.txt`, as long as the CSV datasets are already included.
+
+# BBB Permeability Model Workspace
+The project currently includes three main scripts:
+
+- `class_model_full_comment_no_print_version.py`
+  This is the main reference version for the project logic. It keeps the full thought process and in-line comments from when I was developing, but most print statements are commented out.
+- `class_model_full_print_version.py`
+  This file is my MAIN PROJECT SUBMISSION THAT YOU CAN TEST AGAINST THE RESULTS. This uses the same baseline logic as the full-comment version, but keeps the print statements active throughout the script so you can see intermediate outputs as it runs. I used this version for refercing when creating the report.
+- `class_model_new_seed.py`
+  This is the stability-check version. It keeps the same modeling pipeline but uses a different random seed (`100` instead of the baseline `42`) to confirm the model behavior is reasonably stable. You can see the different outputs based on seed within the script_output_seed[seed#].txt files.
+
+## Expected Workspace Layout
+
+To reproduce my environment, keep this folder structure:
+
+Project/
+├── class_model_full_comment_no_print_version.py
+├── class_model_full_print_version.py
+├── class_model_new_seed.py
+├── requirements.txt
+├── train/
+│   └── desc_rdk_train.csv
+└── external_test/
+    └── desc_rdk_test.csv
+
+The scripts expect:
+- `train/desc_rdk_train.csv`
+- `external_test/desc_rdk_test.csv`
+
+If those files are missing, the scripts will fail when reading the datasets.
+
+## Python Version
+This workspace was built with:
+- `Python 3.14.4`
+- `pip 26.0.1`
+
+## Running The Scripts
+Run from the project root or else the paths wont resolve:
+
+```bash
+python class_model_full_comment_no_print_version.py
+python class_model_full_print_version.py
+python class_model_new_seed.py
+```
+
+## Important Runtime Note!!!!!! PLEASE READ !
+These scripts generate Matplotlib plots during execution.
+If you run them in a normal interactive Python session or terminal:
+- the plot windows must be closed before the script continues to the next step
+If you run in a non-interactive environment or with a backend like `Agg`, the scripts will close the plots automatically instead of waiting for you.
+I will add them into the report, so no worries if they autoclose.
+
+## Output Files
+Depending on which script you run, the workspace may create:
+
+- `script_output.txt`
+- `model_comparison.csv`
+- `desc_rdk_test_predictions.csv`
+
+`class_model_full_print_version.py` and `class_model_new_seed.py` write printed output to `script_output.txt` in addition to showing it in the terminal for my testing purposes. You can see these files in the repo if you'd like to reference them.
