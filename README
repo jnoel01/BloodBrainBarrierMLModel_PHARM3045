@@ -1,3 +1,5 @@
+#PLEASE README!! :)
+
 # DOWNLOAD INSUTRCTIONS
 To make this work end to end on your machine, clone the gitHub repo.
 There are no extra downloads required beyond Python, pip, and the packages in `requirements.txt`, as long as the CSV datasets are already included.
