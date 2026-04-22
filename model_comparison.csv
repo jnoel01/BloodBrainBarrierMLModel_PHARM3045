@@ -1,0 +1,4 @@
+Model,AUC,Accuracy,Precision_0,Recall_0,Precision_1,Recall_1
+PCA,0.88,0.86,0.69,0.73,0.92,0.9
+LASSO,0.9,0.88,0.71,0.82,0.94,0.9
+Random Forest,0.91,0.9,0.88,0.66,0.91,0.97
