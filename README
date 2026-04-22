@@ -2,7 +2,7 @@
 
 # DOWNLOAD INSUTRCTIONS
 To make this work end to end on your machine, clone the gitHub repo.
-There are no extra downloads required beyond Python, pip, and the packages in `requirements.txt`, as long as the CSV datasets are already included.
+There are no extra downloads required beyond Python, pip, and the packages, as long as the CSV datasets are already included.
 
 # BBB Permeability Model Workspace
 The project currently includes three main scripts:
@@ -22,7 +22,6 @@ Project/
 ├── class_model_full_comment_no_print_version.py
 ├── class_model_full_print_version.py
 ├── class_model_new_seed.py
-├── requirements.txt
 ├── train/
 │   └── desc_rdk_train.csv
 └── external_test/
