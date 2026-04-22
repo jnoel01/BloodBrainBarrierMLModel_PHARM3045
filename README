@@ -6,16 +6,16 @@ There are no extra downloads required beyond Python, pip, and the packages, as l
 
 # BBB Permeability Model Workspace
 The project currently includes three main scripts:
+- `class_model_full_print_version.py`
+  This file is my MAIN PROJECT SUBMISSION THAT YOU RUN. This uses the same baseline logic as the full-comment version, but keeps the print statements active throughout the script so you can see intermediate outputs as it runs. I used this version for refercing when creating the report.
 
 - `class_model_full_comment_no_print_version.py`
-  This is the main reference version for the project logic. It keeps the full thought process and in-line comments from when I was developing, but most print statements are commented out.
-- `class_model_full_print_version.py`
-  This file is my MAIN PROJECT SUBMISSION THAT YOU CAN TEST AGAINST THE RESULTS. This uses the same baseline logic as the full-comment version, but keeps the print statements active throughout the script so you can see intermediate outputs as it runs. I used this version for refercing when creating the report.
+  This is the reference version for the project logic, it is very informal. It keeps the full thought process and in-line comments from when I was developing, but most print statements are commented out.
+
 - `class_model_new_seed.py`
   This is the stability-check version. It keeps the same modeling pipeline but uses a different random seed (`100` instead of the baseline `42`) to confirm the model behavior is reasonably stable. You can see the different outputs based on seed within the script_output_seed[seed#].txt files.
 
 ## Expected Workspace Layout
-
 To reproduce my environment, keep this folder structure:
 
 Project/
