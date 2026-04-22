@@ -1,0 +1,279 @@
+
+*************DATA EXPLORATION*************
+  CompName  Expt    SlogP       SMR  LabuteASA   TPSA  ...  MQN37  MQN38  MQN39  MQN40  MQN41  MQN42
+0   train1     0  0.83550   47.9504    70.8390  43.32  ...      0      0      0      0      2      1
+1   train2     0  3.37790   80.6688   123.6731  40.54  ...      0      0      0      0      0      0
+2   train3     0  0.20180   57.2176    96.7120  93.29  ...      0      0      0      0      2      1
+3   train4     0  3.92732   95.7473   148.9481  68.53  ...      0      0      0      0      2      1
+4   train5     0  3.06402  117.3884   174.5127  87.05  ...      0      0      0      0      0      0
+
+[5 rows x 121 columns]
+(1465, 121)
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1465 entries, 0 to 1464
+Columns: 121 entries, CompName to MQN42
+dtypes: float64(54), int64(66), object(1)
+memory usage: 1.4+ MB
+None
+              Expt        SlogP          SMR  ...        MQN40        MQN41        MQN42
+count  1465.000000  1465.000000  1465.000000  ...  1465.000000  1465.000000  1465.000000
+mean      0.772696     2.390947    91.559255  ...     0.009556     2.354266     1.326280
+std       0.419234     2.040435    33.922026  ...     0.104104     2.603216     1.818251
+min       0.000000    -8.895300    11.254000  ...     0.000000     0.000000     0.000000
+25%       1.000000     1.289500    70.821200  ...     0.000000     0.000000     0.000000
+50%       1.000000     2.555500    90.932000  ...     0.000000     2.000000     1.000000
+75%       1.000000     3.716000   108.716600  ...     0.000000     4.000000     2.000000
+max       1.000000    10.056300   325.477200  ...     2.000000    14.000000    13.000000
+
+[8 rows x 120 columns]
+CompName                       0
+Expt                           0
+SlogP                          0
+SMR                            0
+LabuteASA                      0
+TPSA                           0
+AMW                            0
+ExactMW                        0
+NumLipinskiHBA                 0
+NumLipinskiHBD                 0
+NumRotatableBonds              0
+NumHBD                         0
+NumHBA                         0
+NumAmideBonds                  0
+NumHeteroAtoms                 0
+NumHeavyAtoms                  0
+NumAtoms                       0
+NumStereocenters               0
+NumUnspecifiedStereocenters    0
+NumRings                       0
+dtype: int64
+Expt
+1    1132
+0     333
+Name: count, dtype: int64
+(1465, 119)
+(1465,)
+
+*************END OF DATA EXPLORATION*************
+
+*************DATA PREPROCESSING*************
+Features after removing constants: 115
+Training set: (1172, 115)
+Validation set: (293, 115)
+
+Training class balance:
+Expt
+1    906
+0    266
+Name: count, dtype: int64
+
+Validation class balance:
+Expt
+1    226
+0     67
+Name: count, dtype: int64
+Original number of features: 119
+Features after correlation filter: 57
+
+Selected features: ['SlogP', 'SMR', 'LabuteASA', 'TPSA', 'AMW', 'ExactMW', 'NumLipinskiHBA', 'NumLipinskiHBD', 'NumRotatableBonds', 'NumHBD', 'NumHBA', 'NumAmideBonds', 'NumHeteroAtoms', 'NumHeavyAtoms', 'NumAtoms', 'NumStereocenters', 'NumUnspecifiedStereocenters', 'NumSaturatedHeterocycles', 'Chi0v', 'Chi1v', 'Chi2v', 'Chi3v', 'Chi1n', 'Chi2n', 'HallKierAlpha', 'kappa1', 'kappa2', 'kappa3', 'slogp_VSA1', 'slogp_VSA2', 'slogp_VSA3', 'smr_VSA1', 'smr_VSA3', 'smr_VSA10', 'peoe_VSA1', 'peoe_VSA2', 'peoe_VSA5', 'peoe_VSA9', 'peoe_VSA10', 'peoe_VSA12', 'peoe_VSA13', 'peoe_VSA14', 'MQN6', 'MQN8', 'MQN10', 'MQN12', 'MQN13', 'MQN14', 'MQN19', 'MQN20', 'MQN21', 'MQN22', 'MQN23', 'MQN26', 'MQN28', 'MQN31', 'MQN34']
+Filtered training set shape: (1172, 57)
+Filtered validation set shape: (293, 57)
+TPSA                           0.601494
+MQN21                          0.599900
+NumLipinskiHBA                 0.599844
+NumHeteroAtoms                 0.584405
+MQN20                          0.572122
+NumHBA                         0.549439
+NumHBD                         0.538632
+MQN23                          0.537652
+MQN10                          0.522270
+peoe_VSA1                      0.512645
+peoe_VSA10                     0.511748
+NumLipinskiHBD                 0.509590
+MQN22                          0.509590
+MQN34                          0.497671
+slogp_VSA2                     0.491141
+MQN13                          0.462975
+smr_VSA1                       0.454279
+MQN26                          0.451240
+ExactMW                        0.431189
+AMW                            0.430946
+kappa1                         0.429919
+MQN28                          0.418508
+MQN8                           0.415301
+MQN14                          0.411352
+NumHeavyAtoms                  0.404222
+MQN12                          0.404222
+kappa2                         0.399253
+LabuteASA                      0.394755
+MQN31                          0.377958
+Chi0v                          0.376257
+slogp_VSA3                     0.376245
+smr_VSA3                       0.368198
+MQN19                          0.360627
+NumRotatableBonds              0.360627
+Chi1v                          0.352821
+SMR                            0.352820
+HallKierAlpha                  0.352713
+SlogP                          0.347292
+Chi2v                          0.339661
+kappa3                         0.328071
+NumAtoms                       0.326753
+peoe_VSA5                      0.325736
+smr_VSA10                      0.320897
+slogp_VSA1                     0.315951
+MQN6                           0.308794
+NumSaturatedHeterocycles       0.305779
+peoe_VSA13                     0.304053
+Chi1n                          0.303877
+peoe_VSA2                      0.298674
+peoe_VSA14                     0.287390
+peoe_VSA9                      0.287181
+NumStereocenters               0.286346
+NumUnspecifiedStereocenters    0.286346
+NumAmideBonds                  0.274990
+Chi2n                          0.274665
+Chi3v                          0.272664
+peoe_VSA12                     0.263141
+dtype: float64
+
+*************END OF DATA PREPROCESSING*************
+
+*************DIMENSONLIATY REDUCTION*************
+
+Explained variance by first 10 PCs:
+PC1: 0.516
+PC2: 0.635
+PC3: 0.716
+PC4: 0.766
+PC5: 0.804
+PC6: 0.835
+PC7: 0.858
+PC8: 0.878
+PC9: 0.894
+PC10: 0.908
+
+Number of retained principal components: 15
+PCA training set shape: (1172, 15)
+PCA validation set shape: (293, 15)
+
+*************END OF DIMENSONLIATY REDUCTION*************
+
+*************PIPELINE A: Logistic Regression (PCA)
+
+Training Accuracy: 0.875
+Validation Accuracy: 0.870
+
+Validation Confusion Matrix:
+[[ 53  14]
+ [ 24 202]]
+
+Validation Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.688     0.791     0.736        67
+           1      0.935     0.894     0.914       226
+
+    accuracy                          0.870       293
+   macro avg      0.812     0.842     0.825       293
+weighted avg      0.879     0.870     0.873       293
+
+
+PCA ROC AUC: 0.896
+
+*************END OF PIPELINE A: PCA*************
+
+Top LASSO Features:
+          Feature  Coefficient   AbsCoef
+9          NumHBD    -2.034966  2.034966
+31       smr_VSA1     0.992450  0.992450
+10         NumHBA     0.911551  0.911551
+22          Chi1n     0.847448  0.847448
+56          MQN34    -0.815255  0.815255
+44          MQN10    -0.813595  0.813595
+27         kappa3    -0.697249  0.697249
+11  NumAmideBonds     0.673644  0.673644
+37      peoe_VSA9    -0.625977  0.625977
+24  HallKierAlpha     0.621048  0.621048
+
+Number of features selected by LASSO: 39
+
+Selected features:
+['SlogP', 'AMW', 'ExactMW', 'NumRotatableBonds', 'NumHBD', 'NumHBA', 'NumAmideBonds', 'NumStereocenters', 'NumUnspecifiedStereocenters', 'NumSaturatedHeterocycles', 'Chi2v', 'Chi3v', 'Chi1n', 'HallKierAlpha', 'kappa2', 'kappa3', 'slogp_VSA1', 'slogp_VSA2', 'slogp_VSA3', 'smr_VSA1', 'smr_VSA3', 'smr_VSA10', 'peoe_VSA1', 'peoe_VSA2', 'peoe_VSA5', 'peoe_VSA9', 'peoe_VSA10', 'peoe_VSA12', 'peoe_VSA13', 'peoe_VSA14', 'MQN6', 'MQN8', 'MQN10', 'MQN14', 'MQN19', 'MQN26', 'MQN28', 'MQN31', 'MQN34']
+
+*************PIPELINE B: LASSO (Logistic Regression)
+
+Training Accuracy: 0.901
+Validation Accuracy: 0.870
+
+Validation Confusion Matrix:
+[[ 53  14]
+ [ 24 202]]
+
+Validation Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.688     0.791     0.736        67
+           1      0.935     0.894     0.914       226
+
+    accuracy                          0.870       293
+   macro avg      0.812     0.842     0.825       293
+weighted avg      0.879     0.870     0.873       293
+
+
+LASSO ROC AUC: 0.898
+
+*************END OF PIPELINE B: LASSO*************
+
+*************PIPELINE C: RANDOM FOREST*************
+
+Training Accuracy: 1.000
+Validation Accuracy: 0.922
+
+Validation Confusion Matrix:
+[[ 50  17]
+ [  6 220]]
+
+Validation Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.893     0.746     0.813        67
+           1      0.928     0.973     0.950       226
+
+    accuracy                          0.922       293
+   macro avg      0.911     0.860     0.882       293
+weighted avg      0.920     0.922     0.919       293
+
+
+Random Forest ROC AUC: 0.937
+
+Top 10 Random Forest Important Features:
+           Feature  Importance
+6   NumLipinskiHBA    0.067114
+34       peoe_VSA1    0.064504
+3             TPSA    0.061315
+50           MQN21    0.060942
+49           MQN20    0.039179
+12  NumHeteroAtoms    0.038674
+9           NumHBD    0.032985
+52           MQN23    0.032640
+31        smr_VSA1    0.031912
+29      slogp_VSA2    0.030442
+
+*************END OF PIPELINE C: RANDOM FOREST*************
+
+MODEL COMPARISON TABLE:
+           Model   AUC  Accuracy  Precision_0  Recall_0  Precision_1  Recall_1
+0            PCA  0.90      0.87         0.69      0.79         0.94      0.89
+1          LASSO  0.90      0.87         0.69      0.79         0.94      0.89
+2  Random Forest  0.94      0.92         0.89      0.75         0.93      0.97
+
+First few rows of test prediction csv:
+  CompName  Expt   SlogP       SMR  LabuteASA   TPSA  ...  MQN37  MQN38  MQN39  MQN40  MQN41  MQN42
+0    test1     1  5.9961  119.5820   168.6489  12.47  ...      0      0      0      0      0      0
+1    test2     1  2.2664   83.3158   129.2431  49.77  ...      0      0      0      0      5      3
+2    test3     1  1.7407   47.0275    71.0318  49.33  ...      0      0      0      0      0      0
+3    test4     0  1.6046  100.1525   159.2368  95.94  ...      0      0      0      0      0      0
+4    test5     1  4.0311  102.1438   167.1023  26.71  ...      0      0      0      0      2      1
+
+[5 rows x 121 columns]
