@@ -13,7 +13,7 @@ The project currently includes three main scripts:
   This is the reference version for the project logic, it is very informal. It keeps the full thought process and in-line comments from when I was developing, but most print statements are commented out.
 
 - `class_model_new_seed.py`
-  This is the stability-check version. It keeps the same modeling pipeline but uses a different random seed (`100` instead of the baseline `42`) to confirm the model behavior is reasonably stable. You can see the different outputs based on seed within the script_output_seed[seed#].txt files.
+  This is the stability-check version. It keeps the same modeling pipeline but uses a different random seed to confirm the model behavior is reasonably stable. You can see the different outputs based on seed within the script_output_seed[seed#].txt files.
 
 ## Expected Workspace Layout
 To reproduce my environment, keep this folder structure:
